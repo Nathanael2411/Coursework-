@@ -2,11 +2,10 @@
 // Created by Oshane Nathanael on 27/04/2026.
 //
 
-
-#include <stdio.h>
 #include <math.h>
 #include "waveform.h"
 
+// Compute RMS voltage for the selected phase
 double compute_rms(WaveformSample *samples, int count, char phase) {
     double sum_sq = 0.0;
     WaveformSample *ptr = samples;
@@ -29,6 +28,7 @@ double compute_rms(WaveformSample *samples, int count, char phase) {
     return sqrt(sum_sq / count);
 }
 
+// Compute peak-to-peak voltage for the selected phase
 double compute_peak_to_peak(WaveformSample *samples, int count, char phase) {
     if (count <= 0) {
         return -1.0;
@@ -70,6 +70,7 @@ double compute_peak_to_peak(WaveformSample *samples, int count, char phase) {
     return max_val - min_val;
 }
 
+// Compute DC offset for the selected phase
 double compute_dc_offset(WaveformSample *samples, int count, char phase) {
     if (count <= 0) {
         return -1.0;
@@ -96,6 +97,7 @@ double compute_dc_offset(WaveformSample *samples, int count, char phase) {
     return sum / count;
 }
 
+// Count clipped samples for the selected phase
 int count_clipped(WaveformSample *samples, int count, char phase, double limit) {
     int clipped_count = 0;
     WaveformSample *ptr = samples;
@@ -120,6 +122,7 @@ int count_clipped(WaveformSample *samples, int count, char phase, double limit) 
     return clipped_count;
 }
 
+// Check RMS compliance against nominal voltage
 int check_compliance(double rms, double nominal) {
     double lower_limit = nominal * 0.90;
     double upper_limit = nominal * 1.10;
@@ -131,6 +134,7 @@ int check_compliance(double rms, double nominal) {
     return 0;
 }
 
+// Compute mean frequency
 double compute_mean_frequency(WaveformSample *samples, int count) {
     if (count <= 0) {
         return -1.0;
@@ -146,6 +150,7 @@ double compute_mean_frequency(WaveformSample *samples, int count) {
     return sum / count;
 }
 
+// Compute mean power factor
 double compute_mean_power_factor(WaveformSample *samples, int count) {
     if (count <= 0) {
         return -1.0;
@@ -161,6 +166,7 @@ double compute_mean_power_factor(WaveformSample *samples, int count) {
     return sum / count;
 }
 
+// Compute mean THD
 double compute_mean_thd(WaveformSample *samples, int count) {
     if (count <= 0) {
         return -1.0;
@@ -176,6 +182,7 @@ double compute_mean_thd(WaveformSample *samples, int count) {
     return sum / count;
 }
 
+// Compute mean line current
 double compute_mean_line_current(WaveformSample *samples, int count) {
     if (count <= 0) {
         return -1.0;
