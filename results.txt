@@ -3,17 +3,17 @@ POWER QUALITY ANALYSIS REPORT
 
 1. Voltage Metrics
 ------------------
-Phase A RMS   = 229.81 V
-Phase B RMS   = 229.81 V
-Phase C RMS   = 229.81 V
+Phase A RMS           = 229.81 V
+Phase B RMS           = 229.81 V
+Phase C RMS           = 229.81 V
 
 Phase A Peak-to-Peak  = 650.00 V
 Phase B Peak-to-Peak  = 649.86 V
 Phase C Peak-to-Peak  = 649.86 V
 
-Phase A DC Offset  = -0.000000 V
-Phase B DC Offset  = 0.000000 V
-Phase C DC Offset  = -0.000000 V
+Phase A DC Offset     = -0.000000 V
+Phase B DC Offset     = 0.000000 V
+Phase C DC Offset     = -0.000000 V
 
 2. Clipping Detection
 ---------------------

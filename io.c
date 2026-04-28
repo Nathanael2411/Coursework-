@@ -2,7 +2,6 @@
 // Created by Oshane Nathanael on 27/04/2026.
 //
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "io.h"
@@ -10,7 +9,6 @@
 int count_rows(const char *filename) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        perror("count_rows fopen failed");
         return -1;
     }
 
@@ -18,7 +16,6 @@ int count_rows(const char *filename) {
     int count = 0;
 
     if (fgets(line, sizeof(line), file) == NULL) {
-        printf("count_rows: failed to read header\n");
         fclose(file);
         return -1;
     }
@@ -28,27 +25,23 @@ int count_rows(const char *filename) {
     }
 
     fclose(file);
-    printf("count_rows: counted %d data rows\n", count);
     return count;
 }
 
 WaveformSample *load_data(const char *filename, int *sample_count) {
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        perror("load_data fopen failed");
         return NULL;
     }
 
     int count = count_rows(filename);
     if (count <= 0) {
-        printf("load_data: count_rows returned %d\n", count);
         fclose(file);
         return NULL;
     }
 
     WaveformSample *samples = malloc(count * sizeof(WaveformSample));
     if (samples == NULL) {
-        printf("load_data: malloc failed\n");
         fclose(file);
         return NULL;
     }
@@ -56,7 +49,6 @@ WaveformSample *load_data(const char *filename, int *sample_count) {
     char line[512];
 
     if (fgets(line, sizeof(line), file) == NULL) {
-        printf("load_data: failed to read header\n");
         free(samples);
         fclose(file);
         return NULL;
@@ -76,16 +68,12 @@ WaveformSample *load_data(const char *filename, int *sample_count) {
 
         if (parsed == 8) {
             i++;
-        } else {
-            printf("load_data: failed to parse row %d, parsed=%d\n", i + 1, parsed);
-            printf("Problem line: %s\n", line);
         }
     }
 
     fclose(file);
 
     *sample_count = i;
-    printf("load_data: successfully loaded %d rows\n", i);
 
     if (i == 0) {
         free(samples);
