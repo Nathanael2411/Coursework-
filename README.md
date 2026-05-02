@@ -2,6 +2,9 @@
 
 This project is a C program for analysing 3-phase power quality waveform data from a CSV file.
 
+## GitHub Repository
+https://github.com/Nathanael2411/Coursework-
+
 ## Features
 - Loads waveform data from CSV
 - Computes RMS voltage for each phase
